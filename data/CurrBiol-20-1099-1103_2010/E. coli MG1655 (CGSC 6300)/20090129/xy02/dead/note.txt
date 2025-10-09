@@ -1,2 +1,3 @@
-ch0: cell stop growing after filament dividing once more
-ch5: cell stop growing after filament dividing once more
+version https://git-lfs.github.com/spec/v1
+oid sha256:6386322c3fbaed68f5c314cc9203db18f0d122575088581752d6583a4dbdaf49
+size 114

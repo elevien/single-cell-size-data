@@ -1,5 +1,3 @@
-ch2: stop growing as normal cell
-ch10: cell stop growing as a filament
-ch1: stop growing as normal cell
-ch4: cell escap from channel as a filament
-ch3: cell escap from channel as a filament
+version https://git-lfs.github.com/spec/v1
+oid sha256:128e96ebef49d505a7edbda1dadaa094d210a95a9bb40a9067bcfe5fc92d0bf8
+size 193

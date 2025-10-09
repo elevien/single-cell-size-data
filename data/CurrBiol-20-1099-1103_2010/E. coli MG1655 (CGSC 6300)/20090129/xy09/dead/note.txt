@@ -1,7 +1,3 @@
-ch3: escape from channel with filamentation
-ch9: escape from channel with filamentation
-ch1: stop growing with normal cell size
-ch5: stop growing with normal cell size
-ch0: stop growing with normal cell size
-ch8: stop growing with filament dividing once more
-ch7: stop growing with normal cell size
+version https://git-lfs.github.com/spec/v1
+oid sha256:80902d4f080db4cbff08de2259fa25e1749cda3401c381e845e4cffccbbabed2
+size 304

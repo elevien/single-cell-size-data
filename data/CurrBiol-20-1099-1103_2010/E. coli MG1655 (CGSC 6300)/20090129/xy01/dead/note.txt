@@ -1,8 +1,3 @@
-ch2: cell stop growing after a filament dividing once more
-ch0: cell stop growing as a normal cell
-ch3: cell stop growing as a normal cell
-ch9: cell stop growing as a normal cell
-ch6: cell stop growing as a normal cell
-ch1: cell stop growing after a filament dividing once more
-ch8: cell stop growing after a filament dividing once more
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:127b0ec3d52f6094dcb511c9101a612b819dd90c2125a3c5fce6b6a3e35c7171
+size 346

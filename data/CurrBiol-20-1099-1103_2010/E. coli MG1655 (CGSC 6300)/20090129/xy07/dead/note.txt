@@ -1,6 +1,3 @@
-ch4: cell escape from channel with filamentation
-ch5: stop growing with normal cell size
-ch3: stop growing after dividing once more from a filament
-ch6: dead end cell lyse, then all cells escape
-ch2: stop growing
-ch8: stop growing
+version https://git-lfs.github.com/spec/v1
+oid sha256:cad45bf6524b863793e3a76f97e1c5fb4e4cc2490a924274410b7c5ab096fd06
+size 237

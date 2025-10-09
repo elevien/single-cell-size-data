@@ -1,7 +1,2 @@
 .DS_Store
 *.ipynb_checkpoints
-
-# Ignore all files and folders inside data subdirectories
-# but keep top-level data directory structure
-data/**/
-data/**/*

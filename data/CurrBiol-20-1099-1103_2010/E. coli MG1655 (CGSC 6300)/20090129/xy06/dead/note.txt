@@ -1,2 +1,3 @@
-ch2: stop growing as filament
-ch3: stop growing as normal cell
+version https://git-lfs.github.com/spec/v1
+oid sha256:40da79beafbaf59001b233f400267004a1c7fceae1abade659841a8a19b30e08
+size 63

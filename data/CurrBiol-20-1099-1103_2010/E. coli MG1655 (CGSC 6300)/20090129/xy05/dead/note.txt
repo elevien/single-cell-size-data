@@ -1,7 +1,3 @@
-ch1: stop growing as a filament
-ch11: stop growing as a normal cell
-ch2: stop growing as a normal cell
-ch4: escape as a filament
-ch9: stop growing after filament dividing once more
-ch5: stop growing as a normal cell
-ch6: stop growing after filament dividing once more
+version https://git-lfs.github.com/spec/v1
+oid sha256:ce8cd4728a7fa7a2484b1d3f4666dd79d3d1f12a674388f8e70dffce95294703
+size 273
