@@ -1,0 +1,2 @@
+ch2: stop growing as filament
+ch3: stop growing as normal cell

@@ -1,0 +1,5 @@
+ch4: cell lyse
+ch3: cell escape from channel with filamentation
+ch6: cell escape from channel with filamentation
+ch1: cell escape from channel with filamentation
+ch0: cell escape from channel with filamentation

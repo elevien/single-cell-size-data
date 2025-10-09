@@ -1,0 +1,5 @@
+ch2: cell lyse
+ch3: escape from channel with filamentation
+ch4: stop growing as normal cell
+ch5: stop growing as normal cell
+ch9: stop growing as a large cell

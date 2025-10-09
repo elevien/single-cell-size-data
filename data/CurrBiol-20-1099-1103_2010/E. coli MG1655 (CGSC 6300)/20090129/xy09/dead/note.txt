@@ -1,0 +1,7 @@
+ch3: escape from channel with filamentation
+ch9: escape from channel with filamentation
+ch1: stop growing with normal cell size
+ch5: stop growing with normal cell size
+ch0: stop growing with normal cell size
+ch8: stop growing with filament dividing once more
+ch7: stop growing with normal cell size

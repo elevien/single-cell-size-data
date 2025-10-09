@@ -1,0 +1,7 @@
+ch1: stop growing as a filament
+ch11: stop growing as a normal cell
+ch2: stop growing as a normal cell
+ch4: escape as a filament
+ch9: stop growing after filament dividing once more
+ch5: stop growing as a normal cell
+ch6: stop growing after filament dividing once more

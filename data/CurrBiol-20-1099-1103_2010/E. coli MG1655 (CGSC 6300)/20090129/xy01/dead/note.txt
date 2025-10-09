@@ -1,0 +1,8 @@
+ch2: cell stop growing after a filament dividing once more
+ch0: cell stop growing as a normal cell
+ch3: cell stop growing as a normal cell
+ch9: cell stop growing as a normal cell
+ch6: cell stop growing as a normal cell
+ch1: cell stop growing after a filament dividing once more
+ch8: cell stop growing after a filament dividing once more
+

@@ -1,0 +1,3 @@
+ch0: escape from channel with filamentation
+ch2: escape from channel with filamentation
+ch4: die as filament

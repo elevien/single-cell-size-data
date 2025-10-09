@@ -1,0 +1,5 @@
+ch2: stop growing as normal cell
+ch10: cell stop growing as a filament
+ch1: stop growing as normal cell
+ch4: cell escap from channel as a filament
+ch3: cell escap from channel as a filament

@@ -1,0 +1,9 @@
+ch10: cell stop growing as a filament
+ch8: cell stop growing as normal cell
+ch5: cell escap from channel as a filament
+ch6: cell escap from channel as a filament
+ch0: cell stop growing as normal cell
+ch2: cell stop growing after a filament dividing once more
+ch3: cell stop growing after a filament dividing twice more
+ch1: cell stop growing as a filament
+ch9: cell stop growing after a filament dividing once more

@@ -1,0 +1,2 @@
+ch0: cell stop growing after filament dividing once more
+ch5: cell stop growing after filament dividing once more

@@ -1,0 +1,7 @@
+ch0: escape from channel with filamentation
+ch1: escape from channel with filamentation
+ch2: stop grow with nomal cell size
+ch5: escape from channel with filamentation
+ch6: stop growing as normal cell
+ch8: stop growing as normal cell
+ch10: die as filament

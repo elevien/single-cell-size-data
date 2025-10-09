@@ -1,0 +1,6 @@
+ch4: cell escape from channel with filamentation
+ch5: stop growing with normal cell size
+ch3: stop growing after dividing once more from a filament
+ch6: dead end cell lyse, then all cells escape
+ch2: stop growing
+ch8: stop growing
