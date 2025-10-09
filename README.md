@@ -1,9 +1,8 @@
 # Single Cell Size Data Explorer
 
-This repository contains a collections of public datasets with single-cell size measurements. 
-It also links to interactive companion notebooks for visualizing them. 
+This repository contains a collections of public datasets with single-cell size measurements from different organism with different measurement techniques. 
 
-**This is a work in progress** and I welcome contributions including datasets, improvements to the organization and/or visualization analysis tools. Please feel free to put in a pull request or open an issue if you are interested in helping. 
+**This is a work in progress**. We welcome contributions including datasets, improvements to the organization and/or visualization analysis tools. Please feel free to put in a pull request or open an issue if you are interested in helping. 
 
 ## Universal format for size data
 
@@ -11,7 +10,7 @@ There are two types of data sets: raw and coarse-grained. In the Coarse-grained 
 
 The raw data has columns: 
 
-| Column | Type | Description |
+| Column Name | Type | Description [Units] |
 |--------|------|-------------|
 | size | float | Cell size measurement [units differ between datasets] |
 | y | float | Log-normalized size|
@@ -26,11 +25,11 @@ where $y = \log(\text{size} / \langle\text{size}\rangle)$ with the average being
 
 The raw data has columns: 
 
-| Column | Type | Description |
+| Column Name | Type | Description |
 |--------|------|-------------|
-| y0 | float | Initial log-normalized size |
+| y0 | float | Initial log-normalized size [units differ between datasets] |
 | phi | float | Log fold-change in sizeover cell cycle |
-| gt | float | Generation time |
+| gt | float | Generation time [minutes] |
 | cell | int | Cell number in lineage |
 | lineage | int | Lineage identifier (for mother machine data) |
 | experiment | string | Experiment identifier |
