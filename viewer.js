@@ -17,24 +17,24 @@ let availableDatasets = [];
 let timeRange = { min: 0, max: 100 };
 let currentTimeWindow = 100; // percentage of full range
 
-// Available datasets (using GitHub raw URLs to avoid CORS issues)
+// Available datasets (using GitHub release URLs to avoid CORS issues)
 const datasets = [
     {
         name: "E. Coli (CurrBiol-20-1099-1103_2010)",
         files: [
-            { path: "https://raw.githubusercontent.com/elevien/single-cell-size-data/main/data/CurrBiol-20-1099-1103_2010/WRB2010.csv", label: "WRB2010 Data" }
+            { path: "https://github.com/elevien/single-cell-size-data/releases/download/v0.1-alpha/WRB2010.csv", label: "WRB2010 Data" }
         ]
     },
     {
         name: "E. Coli (natscidata-170036-2017)", 
         files: [
-            { path: "https://raw.githubusercontent.com/elevien/single-cell-size-data/main/data/natscidata-170036-2017/TPP2017.csv", label: "TPP2017 Data" }
+            { path: "https://github.com/elevien/single-cell-size-data/releases/download/v0.1-alpha/TPP2017.csv", label: "TPP2017 Data" }
         ]
     },
     {
         name: "L1210 (Manalis lab)",
         files: [
-            { path: "https://raw.githubusercontent.com/elevien/single-cell-size-data/main/data/levien-hokang-etal_2025/LKB2025.csv", label: "LKB2025 Data" }
+            { path: "https://github.com/elevien/single-cell-size-data/releases/download/v0.1-alpha/LKB2025.csv", label: "LKB2025 Data" }
         ]
     }
 ];
@@ -97,7 +97,12 @@ function loadDataset(filePath) {
     // If running locally and path doesn't start with http, use relative path
     let actualPath = filePath;
     if (window.location.protocol === 'file:' && !filePath.startsWith('http')) {
-        actualPath = filePath.replace('https://raw.githubusercontent.com/elevien/single-cell-size-data/main/', '');
+        // Extract filename from release URL for local fallback
+        const filename = filePath.split('/').pop();
+        const datasetPath = filePath.includes('WRB2010') ? 'data/CurrBiol-20-1099-1103_2010/' :
+                           filePath.includes('TPP2017') ? 'data/natscidata-170036-2017/' :
+                           filePath.includes('LKB2025') ? 'data/levien-hokang-etal_2025/' : 'data/';
+        actualPath = datasetPath + filename;
     }
     
     d3.csv(actualPath).then(function(data) {
