@@ -2,6 +2,8 @@
 
 This repository contains a collections of public datasets with single-cell size measurements from different organism with different measurement techniques. 
 
+🔬 **[Interactive Data Visualization](https://elevien.github.io/single-cell-size-data/)** 🔬
+
 **This is a work in progress**. We welcome contributions including datasets, improvements to the organization and/or visualization analysis tools. Please feel free to put in a pull request or open an issue if you are interested in helping. 
 
 ## Universal format for size data
@@ -45,7 +47,7 @@ The raw data has columns:
 
 
 ### Mammalian cells
-- **LKB2025:** Levien, E., Kang, J. H., Biswas, K., Manalis, S. R., Amir, A., & Miettinen, T. P. (2025). Stochasticity in mammalian cell growth rates drives cell-to-cell variability independently of cell size and divisions. *bioRxiv*, 2025.06.18.659700. [https://doi.org/10.1101/2025.06.18.659700](https://doi.org/10.1101/2025.06.18.659700)
+- **L1210smr:** Levien, E., Kang, J. H., Biswas, K., Manalis, S. R., Amir, A., & Miettinen, T. P. (2025). Stochasticity in mammalian cell growth rates drives cell-to-cell variability independently of cell size and divisions. *bioRxiv*, 2025.06.18.659700. [https://doi.org/10.1101/2025.06.18.659700](https://doi.org/10.1101/2025.06.18.659700)
 
 ### Yeast  [WIP]
 

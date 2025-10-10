@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Cell Size Data Viewer</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            min-width: 200px;
+        }
+        
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        
+        select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: #007cba;
+        }
+        
+        .plot-container {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fafafa;
+        }
+        
+        .line {
+            fill: none;
+            stroke-width: 2;
+            opacity: 0.8;
+        }
+        
+        .line:hover {
+            stroke-width: 3;
+            opacity: 1;
+        }
+        
+        .axis text {
+            font-size: 12px;
+        }
+        
+        .axis-label {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .error {
+            background-color: #fee;
+            border: 1px solid #fcc;
+            padding: 10px;
+            border-radius: 4px;
+            color: #c33;
+            margin-bottom: 20px;
+        }
+        
+        .info {
+            background-color: #e6f3ff;
+            border: 1px solid #b3d9ff;
+            padding: 10px;
+            border-radius: 4px;
+            color: #0066cc;
+            margin-bottom: 20px;
+        }
+        
+        .slider-container {
+            width: 100%;
+            min-width: 200px;
+        }
+        
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .slider-info {
+            text-align: center;
+            font-size: 12px;
+            color: #333;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #007cba;
+            cursor: pointer;
+        }
+        
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #007cba;
+            cursor: pointer;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Single Cell Size Data Viewer</h1>
+        
+        <div id="error-message" class="error" style="display: none;"></div>
+        <div id="info-message" class="info" style="display: none;"></div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label for="dataset-select">Dataset:</label>
+                <select id="dataset-select">
+                    <option value="">Select a dataset...</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="experiment-select">Experiment:</label>
+                <select id="experiment-select" disabled>
+                    <option value="">Select an experiment...</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="lineage-select">Lineage:</label>
+                <select id="lineage-select" disabled>
+                    <option value="">Select a lineage...</option>
+                </select>
+            </div>
+            
+            <div class="control-group" id="time-window-group" style="display: none;">
+                <label for="time-window-slider">Time Window:</label>
+                <div class="slider-container">
+                    <input type="range" id="time-window-slider" min="0" max="100" value="100" step="1">
+                    <div class="slider-labels">
+                        <span id="time-min">0</span>
+                        <span id="time-max">100</span>
+                    </div>
+                    <div class="slider-info">
+                        <span id="time-range-display">Full range</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="plot-container">
+            <div id="loading" class="loading" style="display: none;">Loading data...</div>
+            <div id="plot"></div>
+        </div>
+    </div>
+    
+    <script src="viewer.js"></script>
+</body>
+</html>
