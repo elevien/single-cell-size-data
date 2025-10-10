@@ -34,7 +34,7 @@ const datasets = [
     {
         name: "L1210 (Manalis lab)",
         files: [
-            { path: "https://github.com/elevien/single-cell-size-data/releases/download/v0.1-alpha/LKB2025.csv", label: "LKB2025 Data" }
+            { path: "https://github.com/elevien/single-cell-size-data/releases/download/v0.1-alpha/L1210smr.csv", label: "L1210smr Data" }
         ]
     }
 ];
@@ -94,44 +94,104 @@ function loadDataset(filePath) {
     showLoading(true);
     hideMessages();
     
-    // If running locally and path doesn't start with http, use relative path
+    // Determine if we're running locally (either file:// or localhost)
+    const isLocal = window.location.protocol === 'file:' || 
+                   window.location.hostname === 'localhost' || 
+                   window.location.hostname === '127.0.0.1' ||
+                   window.location.hostname === '';
+    
     let actualPath = filePath;
-    if (window.location.protocol === 'file:' && !filePath.startsWith('http')) {
+    if (isLocal && filePath.startsWith('https://github.com/')) {
         // Extract filename from release URL for local fallback
         const filename = filePath.split('/').pop();
         const datasetPath = filePath.includes('WRB2010') ? 'data/CurrBiol-20-1099-1103_2010/' :
                            filePath.includes('TPP2017') ? 'data/natscidata-170036-2017/' :
-                           filePath.includes('LKB2025') ? 'data/levien-hokang-etal_2025/' : 'data/';
+                           filePath.includes('L1210') ? 'data/L1210/' : 'data/';
         actualPath = datasetPath + filename;
     }
     
     d3.csv(actualPath).then(function(data) {
-        // Convert numeric columns
-        data.forEach(d => {
-            d.size = +d.size;
-            d.time_units = +d.time_units;
-            if (d.cell !== undefined) d.cell = +d.cell;
-            if (d.lineage !== undefined) d.lineage = +d.lineage;
-            if (d.experiment !== undefined) {
-                // Clean up experiment names for better display
-                d.experiment = String(d.experiment).replace('.csv', '');
+        // Filter out empty rows
+        data = data.filter(d => d && Object.keys(d).length > 0);
+        
+        if (data.length === 0) {
+            throw new Error("No valid data rows found in CSV");
+        }
+        
+        // Convert numeric columns with better error handling
+        data.forEach((d, index) => {
+            try {
+                // Convert size - handle different possible column names
+                const sizeValue = d.size || d.Size || d.cell_size || d.volume;
+                d.size = sizeValue ? +sizeValue : NaN;
+                
+                // Convert time_units - handle different possible column names  
+                const timeValue = d.time_units || d.time || d.Time || d.minutes;
+                d.time_units = timeValue ? +timeValue : NaN;
+                
+                // Convert cell - handle different possible column names
+                const cellValue = d.cell || d.Cell || d.cell_id;
+                d.cell = cellValue ? +cellValue : 1;
+                
+                // Convert lineage - handle different possible column names
+                const lineageValue = d.lineage || d.Lineage || d.lineage_id;
+                d.lineage = lineageValue ? +lineageValue : 1;
+                
+                // Clean experiment names
+                if (d.experiment !== undefined) {
+                    d.experiment = String(d.experiment).replace('.csv', '');
+                } else {
+                    d.experiment = "default";
+                }
+                
+                // Remove rows with invalid size or time data
+                if (isNaN(d.size) || isNaN(d.time_units)) {
+                    console.warn(`Row ${index} has invalid data:`, d);
+                }
+            } catch (error) {
+                console.warn(`Error processing row ${index}:`, error, d);
             }
         });
         
-        currentData = data;
+        // Filter out rows with invalid data
+        const validData = data.filter(d => !isNaN(d.size) && !isNaN(d.time_units));
+        
+        if (validData.length === 0) {
+            throw new Error("No rows with valid size and time data found");
+        }
+        
+        currentData = validData;
         populateExperimentDropdown();
         setupTimeWindow();
         showLoading(false);
-        showMessage("info", `Loaded ${data.length} data points`);
+        showMessage("info", `Loaded ${validData.length} data points (${data.length - validData.length} invalid rows filtered out)`);
         
     }).catch(function(error) {
         showLoading(false);
         let errorMsg = `Failed to load dataset: ${error.message}`;
-        if (window.location.protocol === 'file:') {
-            errorMsg += "\n\nNote: For local use, please run a local server:\npython3 -m http.server 8000\nThen visit http://localhost:8000";
+        
+        // Provide more specific error messages
+        if (error.message.includes('404') || actualPath.includes('404')) {
+            errorMsg = `Dataset file not found (404). Please check if the file exists in the GitHub release v0.1-alpha.`;
+        } else if (error.message.includes('CORS')) {
+            errorMsg = `CORS error loading dataset. The file may not be accessible from this domain.`;
+        } else if (error.message.includes('toFixed')) {
+            errorMsg = `Data parsing error. The CSV file may have unexpected format or missing columns.`;
         }
+        
+        // Check if running locally for better error messages
+        const isLocal = window.location.protocol === 'file:' || 
+                       window.location.hostname === 'localhost' || 
+                       window.location.hostname === '127.0.0.1' ||
+                       window.location.hostname === '';
+        
+        if (isLocal && error.message.includes('fetch')) {
+            errorMsg = `Failed to load local dataset. Make sure you're running a local server and the data files exist.\n\nTry: python3 -m http.server 8000`;
+        }
+        
         showMessage("error", errorMsg);
         console.error("Error loading data:", error);
+        console.error("Attempted to load from:", actualPath);
     });
 }
 
