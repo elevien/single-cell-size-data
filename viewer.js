@@ -17,24 +17,24 @@ let availableDatasets = [];
 let timeRange = { min: 0, max: 100 };
 let currentTimeWindow = 100; // percentage of full range
 
-// Available datasets (using GitHub release URLs to avoid CORS issues)
+// Available datasets (using GitHub raw URLs for .csv files in data folder)
 const datasets = [
     {
         name: "E. Coli (CurrBiol-20-1099-1103_2010)",
         files: [
-            { path: "https://github.com/elevien/single-cell-size-data/releases/download/v0.1-alpha/WRB2010.csv", label: "WRB2010 Data" }
+            { path: "https://raw.githubusercontent.com/elevien/single-cell-size-data/main/data/WRB2010.csv", label: "WRB2010 Data" }
         ]
     },
     {
         name: "E. Coli (natscidata-170036-2017)", 
         files: [
-            { path: "https://github.com/elevien/single-cell-size-data/releases/download/v0.1-alpha/TPP2017.csv", label: "TPP2017 Data" }
+            { path: "https://raw.githubusercontent.com/elevien/single-cell-size-data/main/data/TPP2017.csv", label: "TPP2017 Data" }
         ]
     },
     {
         name: "L1210 (Manalis lab)",
         files: [
-            { path: "https://github.com/elevien/single-cell-size-data/releases/download/v0.1-alpha/L1210smr.csv", label: "L1210smr Data" }
+            { path: "https://raw.githubusercontent.com/elevien/single-cell-size-data/main/data/L1210smr.csv", label: "L1210smr Data" }
         ]
     }
 ];
@@ -101,13 +101,10 @@ function loadDataset(filePath) {
                    window.location.hostname === '';
     
     let actualPath = filePath;
-    if (isLocal && filePath.startsWith('https://github.com/')) {
-        // Extract filename from release URL for local fallback
+    if (isLocal && filePath.startsWith('https://raw.githubusercontent.com/')) {
+        // Extract filename from raw GitHub URL for local fallback
         const filename = filePath.split('/').pop();
-        const datasetPath = filePath.includes('WRB2010') ? 'data/CurrBiol-20-1099-1103_2010/' :
-                           filePath.includes('TPP2017') ? 'data/natscidata-170036-2017/' :
-                           filePath.includes('L1210') ? 'data/L1210/' : 'data/';
-        actualPath = datasetPath + filename;
+        actualPath = 'data/' + filename;
     }
     
     d3.csv(actualPath).then(function(data) {
@@ -172,7 +169,16 @@ function loadDataset(filePath) {
         
         // Provide more specific error messages
         if (error.message.includes('404') || actualPath.includes('404')) {
-            errorMsg = `Dataset file not found (404). Please check if the file exists in the GitHub release v0.1-alpha.`;
+            const isLocal = window.location.protocol === 'file:' || 
+                           window.location.hostname === 'localhost' || 
+                           window.location.hostname === '127.0.0.1' ||
+                           window.location.hostname === '';
+            
+            if (isLocal) {
+                errorMsg = `Dataset file not found (404). Please check if the .ncsv files exist in your local data/ folder.`;
+            } else {
+                errorMsg = `Dataset file not found (404). Please check if the .ncsv files exist in the GitHub repository data/ folder.`;
+            }
         } else if (error.message.includes('CORS')) {
             errorMsg = `CORS error loading dataset. The file may not be accessible from this domain.`;
         } else if (error.message.includes('toFixed')) {

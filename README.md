@@ -41,15 +41,20 @@ The raw data has columns:
 
 ## Datasets
 
-### Bacteria 
-- **WRB2010:** Wang, P., Robert, L., Pelletier, J., Dang, W. L., Taddei, F., Wright, A., & Jun, S. (2010). Robust growth of *Escherichia coli*. *Current Biology*, 20(12), 1099-1103. [https://doi.org/10.1016/j.cub.2010.04.045](https://doi.org/10.1016/j.cub.2010.04.045)
-- **TPP2017:** Tanouchi, Y., Pai, A., Park, H., Huang, S., Buchler, N. E., & You, L. (2017). Long-term growth data of *Escherichia coli* at a single-cell level. *Scientific Data*, 4, 170036. [https://doi.org/10.1038/sdata.2017.36](https://doi.org/10.1038/sdata.2017.36)
+| Dataset | Organism | Method | Size Units | Reference |
+|---------|----------|--------|------------|-----------|
+| WRB2010.csv | Bacteria (E. coli) | Mother machine | Length (μm) | [1] |
+| TPP2017.csv | Bacteria (E. coli) | Mother machine | Length (μm) | [2] |
+| L1210smr.csv | Mammalian cells (L1210) | Suspended microchannel resonator | Mass (pg) | [3] |
 
+## Data References
 
-### Mammalian cells
-- **L1210smr:** Levien, E., Kang, J. H., Biswas, K., Manalis, S. R., Amir, A., & Miettinen, T. P. (2025). Stochasticity in mammalian cell growth rates drives cell-to-cell variability independently of cell size and divisions. *bioRxiv*, 2025.06.18.659700. [https://doi.org/10.1101/2025.06.18.659700](https://doi.org/10.1101/2025.06.18.659700)
+1. Wang, P., Robert, L., Pelletier, J., Dang, W. L., Taddei, F., Wright, A., & Jun, S. (2010). Robust growth of *Escherichia coli*. *Current Biology*, 20(12), 1099-1103. [https://doi.org/10.1016/j.cub.2010.04.045](https://doi.org/10.1016/j.cub.2010.04.045)
 
-### Yeast  [WIP]
+2. Tanouchi, Y., Pai, A., Park, H., Huang, S., Buchler, N. E., & You, L. (2017). Long-term growth data of *Escherichia coli* at a single-cell level. *Scientific Data*, 4, 170036. [https://doi.org/10.1038/sdata.2017.36](https://doi.org/10.1038/sdata.2017.36)
 
-### Other references
-- Cadart, C., Monnier, S., Grilli, J., Sáez, P. J., Srivastava, N., Attia, R., Terriac, E., Baum, B., Cosentino-Lagomarsino, M., & Piel, M. (2018). Size control in mammalian cells involves modulation of both growth rate and cell cycle duration. *Nature Communications*, 9, 3275. [https://doi.org/10.1038/s41467-018-05393-0](https://doi.org/10.1038/s41467-018-05393-0). This contains multiple datasets [To be added]
+3. Levien, E., Kang, J. H., Biswas, K., Manalis, S. R., Amir, A., & Miettinen, T. P. (2025). Stochasticity in mammalian cell growth rates drives cell-to-cell variability independently of cell size and divisions. *bioRxiv*, 2025.06.18.659700. [https://doi.org/10.1101/2025.06.18.659700](https://doi.org/10.1101/2025.06.18.659700)
+
+## Other references
+
+4. Cadart, C., Monnier, S., Grilli, J., Sáez, P. J., Srivastava, N., Attia, R., Terriac, E., Baum, B., Cosentino-Lagomarsino, M., & Piel, M. (2018). Size control in mammalian cells involves modulation of both growth rate and cell cycle duration. *Nature Communications*, 9, 3275. [https://doi.org/10.1038/s41467-018-05393-0](https://doi.org/10.1038/s41467-018-05393-0). This contains multiple datasets [To be added]
