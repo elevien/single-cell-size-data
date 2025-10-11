@@ -2,7 +2,7 @@
 
 This repository contains a collections of public datasets with single-cell size measurements from different organism with different measurement techniques. 
 
-🔬 **[Interactive Data Visualization](https://elevien.github.io/single-cell-size-data/)** 🔬
+**[Interactive Data Visualization](https://elevien.github.io/single-cell-size-data/)**
 
 **This is a work in progress**. We welcome contributions including datasets, improvements to the organization and/or visualization analysis tools. Please feel free to put in a pull request or open an issue if you are interested in helping. 
 
