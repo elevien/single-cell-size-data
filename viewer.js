@@ -175,9 +175,9 @@ function loadDataset(filePath) {
                            window.location.hostname === '';
             
             if (isLocal) {
-                errorMsg = `Dataset file not found (404). Please check if the .ncsv files exist in your local data/ folder.`;
+                errorMsg = `Dataset file not found (404). Please check if the .csv files exist in your local data/ folder.`;
             } else {
-                errorMsg = `Dataset file not found (404). Please check if the .ncsv files exist in the GitHub repository data/ folder.`;
+                errorMsg = `Dataset file not found (404). Please check if the .csv files exist in the GitHub repository data/ folder.`;
             }
         } else if (error.message.includes('CORS')) {
             errorMsg = `CORS error loading dataset. The file may not be accessible from this domain.`;
