@@ -672,10 +672,10 @@ function computeCellStatistics() {
         // Sort by time
         const sortedData = cellData.sort((a, b) => a.time_units - b.time_units);
         
-        if (sortedData.length < 2) {
-            skippedCells++;
-            return; // Skip cells with insufficient data
-        }
+        // if (sortedData.length < 2) {
+        //     skippedCells++;
+        //     return; // Skip cells with insufficient data
+        // }
         
         // Compute statistics
         const firstPoint = sortedData[0];
