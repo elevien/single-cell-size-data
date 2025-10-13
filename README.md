@@ -8,7 +8,7 @@ This repository contains a collections of public datasets with single-cell size 
 
 ## Universal format for size data
 
-There are two types of data sets: raw and coarse-grained. In the Coarse-grained data sets the each row represents an individual cell and the columns represent quantities averaged over the cell-cycle. Data is for each paper is grouped into a single csv file. Because the datasets under consideration are not exceedingly large (by standards of modern biological data) we have favored convience over memory efficiency.
+Data for each paper is grouped into a single csv file. Because the datasets under consideration are not exceedingly large (by standards of modern biological data) we have favored convience over memory efficiency. 
 
 The raw data has columns: 
 
@@ -25,18 +25,6 @@ The raw data has columns:
 
 where $y = \log(\text{size} / \langle\text{size}\rangle)$ with the average being taken over a lineage. cell is the cell number in that lineage, lineage is the lineage if each experiment contains multiple lineages (e.g. mother machine channel) and experiment is the identifier of the experiment. Info contains any additional information about the experiment. 
 
-The raw data has columns: 
-
-| Column Name | Type | Description |
-|--------|------|-------------|
-| y0 | float | Initial log-normalized size [units differ between datasets] |
-| phi | float | Log fold-change in sizeover cell cycle |
-| gt | float | Generation time [minutes] |
-| cell | int | Cell number in lineage |
-| lineage | int | Lineage identifier (for mother machine data) |
-| experiment | string | Experiment identifier |
-| info | string | Additional experiment information |
-
 
 
 ## Datasets
@@ -46,6 +34,7 @@ The raw data has columns:
 | WRB2010.csv | Bacteria (E. coli) | Mother machine | Length (μm) | [1] |
 | TPP2017.csv | Bacteria (E. coli) | Mother machine | Length (μm) | [2] |
 | L1210smr.csv | Mammalian cells (L1210) | Suspended microchannel resonator | Mass (pg) | [3] |
+|  | |  |  |  |
 
 ## Data References
 

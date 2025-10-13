@@ -27,6 +27,13 @@
             margin-bottom: 30px;
         }
         
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #007cba;
+            padding-bottom: 10px;
+        }
+        
         .controls {
             display: flex;
             gap: 20px;
@@ -158,11 +165,140 @@
             cursor: pointer;
             border: none;
         }
+        
+        .zoom-info {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #333;
+            gap: 10px;
+        }
+        
+        #reset-zoom {
+            background: #007cba;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        #reset-zoom:hover {
+            background: #005a8b;
+        }
+        
+        .zoom-overlay {
+            fill: none;
+            stroke: none;
+        }
+        
+        .zoom-handle {
+            cursor: ew-resize;
+        }
+        
+        .zoom-handle:hover line {
+            stroke: #000000;
+            stroke-width: 3;
+        }
+        
+        .zoom-handle:hover rect {
+            fill: rgba(0, 0, 0, 0.05);
+        }
+        
+        .stat-point {
+            transition: all 0.2s ease;
+        }
+        
+        .stat-point:hover {
+            fill: #005a8b !important;
+            r: 6;
+            opacity: 1 !important;
+        }
+        
+        /* Tab Bar Styles */
+        .tab-bar {
+            display: flex;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            cursor: pointer;
+            font-weight: bold;
+            color: #666;
+            transition: all 0.2s ease;
+            border-radius: 8px 8px 0 0;
+            margin-right: 2px;
+        }
+        
+        .tab:hover {
+            background-color: #e9e9e9;
+            color: #333;
+        }
+        
+        .tab.active {
+            background-color: white;
+            color: #007cba;
+            border-color: #007cba;
+            border-bottom: 2px solid white;
+            margin-bottom: -2px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .repo-link {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .repo-link a {
+            color: #007cba;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 8px 16px;
+            border: 1px solid #007cba;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        .repo-link a:hover {
+            background-color: #007cba;
+            color: white;
+        }
+        
+        .disclaimer {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Single Cell Size Data Viewer</h1>
+        
+        <div class="repo-link">
+            <a href="https://github.com/elevien/single-cell-size-data" target="_blank">📁 View Code on GitHub</a>
+        </div>
+        
+        <div class="disclaimer">
+            ⚠️ <strong>Warning:</strong> This is a work in progress. Plots may contain errors and should not be used for scientific analysis.
+        </div>
         
         <div id="error-message" class="error" style="display: none;"></div>
         <div id="info-message" class="info" style="display: none;"></div>
@@ -181,32 +317,67 @@
                     <option value="">Select an experiment...</option>
                 </select>
             </div>
-            
-            <div class="control-group">
-                <label for="lineage-select">Lineage:</label>
-                <select id="lineage-select" disabled>
-                    <option value="">Select a lineage...</option>
-                </select>
-            </div>
-            
-            <div class="control-group" id="time-window-group" style="display: none;">
-                <label for="time-window-slider">Time Window:</label>
-                <div class="slider-container">
-                    <input type="range" id="time-window-slider" min="0" max="100" value="100" step="1">
-                    <div class="slider-labels">
-                        <span id="time-min">0</span>
-                        <span id="time-max">100</span>
-                    </div>
-                    <div class="slider-info">
-                        <span id="time-range-display">Full range</span>
+        </div>
+        
+        <!-- Tab Bar -->
+        <div class="tab-bar">
+            <div class="tab active" data-tab="lineage">Lineage Viewer</div>
+            <div class="tab" data-tab="statistics">Cell Statistics</div>
+        </div>
+        
+        <!-- Lineage Viewer Tab Content -->
+        <div id="lineage-content" class="tab-content active">
+            <div class="controls">
+                <div class="control-group">
+                    <label for="lineage-select">Lineage:</label>
+                    <select id="lineage-select" disabled>
+                        <option value="">Select a lineage...</option>
+                    </select>
+                </div>
+                
+                <div class="control-group" id="zoom-info-group" style="display: none;">
+                    <label>Time Range:</label>
+                    <div class="zoom-info">
+                        <span id="zoom-info">Full range</span>
+                        <button id="reset-zoom" style="padding: 4px 12px; font-size: 12px;">Reset Zoom</button>
                     </div>
                 </div>
             </div>
+            
+            <div class="plot-container">
+                <div id="loading" class="loading" style="display: none;">Loading data...</div>
+                <div id="plot"></div>
+            </div>
         </div>
         
-        <div class="plot-container">
-            <div id="loading" class="loading" style="display: none;">Loading data...</div>
-            <div id="plot"></div>
+        <!-- Cell Statistics Tab Content -->
+        <div id="statistics-content" class="tab-content">
+            <div class="controls">
+                <div class="control-group">
+                    <label for="x-axis-select">X-axis:</label>
+                    <select id="x-axis-select" disabled>
+                        <option value="">Select X variable...</option>
+                        <option value="tau">τ (Generation time)</option>
+                        <option value="phi">φ (Size change)</option>
+                        <option value="lambda">λ (Growth rate)</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="y-axis-select">Y-axis:</label>
+                    <select id="y-axis-select" disabled>
+                        <option value="">Select Y variable...</option>
+                        <option value="tau">τ (Generation time)</option>
+                        <option value="phi">φ (Size change)</option>
+                        <option value="lambda">λ (Growth rate)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="plot-container">
+                <div id="stats-loading" class="loading" style="display: none;">Computing cell statistics...</div>
+                <div id="stats-plot"></div>
+            </div>
         </div>
     </div>
     
