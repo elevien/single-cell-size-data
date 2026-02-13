@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "project": {
+    "name": "Single Cell Size Data Explorer",
+    "description": "Repository of curated single-cell size datasets with shared formatting and browser-based visualization tools."
+  },
+  "datasets": [
+    {
+      "id": "wrb2010",
+      "display_name": "Escherichia coli - Mother machine (2010)",
+      "kind": "raw",
+      "organism": "Escherichia coli",
+      "system": "Bacteria",
+      "method": "Mother machine",
+      "size_units": "Length (um)",
+      "time_units": "Minutes",
+      "primary_file": "data/WRB2010.csv",
+      "raw_subfolder": "data/CurrBiol-20-1099-1103_2010/",
+      "derived_files": [
+        "data/WRB2010_cg.csv"
+      ],
+      "paper": {
+        "title": "Robust growth of Escherichia coli",
+        "authors": "Wang, Robert, Pelletier, Dang, Taddei, Wright, Jun",
+        "year": 2010,
+        "journal": "Current Biology",
+        "doi": "10.1016/j.cub.2010.04.045",
+        "url": "https://doi.org/10.1016/j.cub.2010.04.045"
+      },
+      "notes": ""
+    },
+    {
+      "id": "tpp2017",
+      "display_name": "Escherichia coli - Mother machine (2017)",
+      "kind": "raw",
+      "organism": "Escherichia coli",
+      "system": "Bacteria",
+      "method": "Mother machine",
+      "size_units": "Length (um)",
+      "time_units": "Minutes",
+      "primary_file": "data/TPP2017.csv",
+      "raw_subfolder": "data/natscidata-170036-2017/",
+      "derived_files": [
+        "data/TPP2017_cg.csv"
+      ],
+      "paper": {
+        "title": "Long-term growth data of Escherichia coli at a single-cell level",
+        "authors": "Tanouchi, Pai, Park, Huang, Buchler, You",
+        "year": 2017,
+        "journal": "Scientific Data",
+        "doi": "10.1038/sdata.2017.36",
+        "url": "https://doi.org/10.1038/sdata.2017.36"
+      },
+      "notes": ""
+    },
+    {
+      "id": "l1210smr",
+      "display_name": "L1210 lymphoblast cells - Suspended microchannel resonator (2025)",
+      "kind": "raw",
+      "organism": "L1210 lymphoblast cells",
+      "system": "Mammalian",
+      "method": "Suspended microchannel resonator",
+      "size_units": "Mass (pg)",
+      "time_units": "Hours",
+      "primary_file": "data/L1210smr_longtraces.csv",
+      "raw_subfolder": "data/L1210/",
+      "paper": {
+        "title": "Stochasticity in mammalian cell growth rates drives cell-to-cell variability independently of cell size and divisions",
+        "authors": "Levien, Kang, Biswas, Manalis, Amir, Miettinen",
+        "year": 2025,
+        "journal": "bioRxiv",
+        "doi": "10.1101/2025.06.18.659700",
+        "url": "https://doi.org/10.1101/2025.06.18.659700"
+      },
+      "notes": ""
+    },
+    {
+      "id": "coarse_grained_parameters",
+      "display_name": "Mixed - Derived statistics (2026)",
+      "kind": "summary",
+      "organism": "Mixed",
+      "system": "Multi-dataset",
+      "method": "Derived statistics",
+      "size_units": "Dimensionless / source-dependent",
+      "time_units": "Source-dependent",
+      "primary_file": "data/coarse_grained_parameters.csv",
+      "paper": {
+        "title": "Repository-derived summary table",
+        "year": 2026,
+        "journal": "Internal aggregation"
+      },
+      "notes": ""
+    }
+  ]
+}

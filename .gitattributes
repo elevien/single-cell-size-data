@@ -1,3 +1,4 @@
 data/**/*.dat filter=lfs diff=lfs merge=lfs -text
 data/**/*.txt filter=lfs diff=lfs merge=lfs -text
 *.dat filter=lfs diff=lfs merge=lfs -text
+data/*_cg.csv filter=lfs diff=lfs merge=lfs -text

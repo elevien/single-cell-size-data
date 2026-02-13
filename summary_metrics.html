@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Summary Metrics Reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/site.css?v=20260215" />
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <main class="page">
+    <section class="shell">
+      <h1>Summary Metrics Reference</h1>
+      <p class="lead">
+        Definitions for coarse-grained quantities plotted in the summary statistics viewer.
+      </p>
+
+      <div class="actions">
+        <a class="button" href="summary.html">Back to summary statistics</a>
+        <a class="button" href="index.html">Back to datasets</a>
+      </div>
+
+      <div class="metric-card">
+        <h2 class="section-title metric-title">Per-Cell Definitions</h2>
+        <p>For cell cycle \(i\):</p>
+        <p>\[
+          \phi_i = y_{f,i} - y_{0,i}
+        \]</p>
+        <p>where \(y = \log(\mathrm{size}/\langle \mathrm{size} \rangle)\).</p>
+        <p>\[
+          \tau_i = t_{f,i} - t_{0,i}
+        \]</p>
+        <p>\[
+          \lambda_i = \frac{\phi_i}{\tau_i}
+        \]</p>
+      </div>
+
+      <div class="metric-card">
+        <h2 class="section-title metric-title">Columns in <code>coarse_grained_parameters.csv</code></h2>
+        <ul class="metric-list">
+          <li><code>phi_mean</code>: \(\langle \phi \rangle\), mean log-size increment per cycle.</li>
+          <li><code>phi_std</code>: standard deviation of \(\phi\).</li>
+          <li><code>tau_mean</code>: \(\langle \tau \rangle\), mean cycle duration.</li>
+          <li><code>tau_std</code>: standard deviation of \(\tau\).</li>
+          <li><code>alpha</code>: lineage correlation/statistical coupling parameter for size-control dynamics (computed from successive generations).</li>
+          <li><code>alpha_lambda</code>: lineage correlation/statistical coupling parameter involving growth-rate fluctuations.</li>
+        </ul>
+      </div>
+
+    </section>
+  </main>
+</body>
+</html>

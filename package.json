@@ -1,0 +1,24 @@
+{
+  "name": "single-cell-size-data",
+  "version": "1.0.0",
+  "description": "This repository contains a collections of public datasets with single-cell size measurements from different organism with different measurement techniques.",
+  "scripts": {
+    "dev": "browser-sync start --server --host 127.0.0.1 --port 3000 --no-ui --no-open --startPath index.html --files \"index.html\" \"dataset.html\" \"visualizations/**/*.html\" \"visualizations/**/*.js\" \"styles/**/*.css\" \"scripts/**/*.js\" \"metadata/**/*.json\" \"data/**/*.csv\"",
+    "serve": "python3 -m http.server 8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elevien/single-cell-size-data.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/elevien/single-cell-size-data/issues"
+  },
+  "homepage": "https://github.com/elevien/single-cell-size-data#readme",
+  "devDependencies": {
+    "browser-sync": "^3.0.4"
+  }
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Summary Statistics Viewer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/site.css?v=20260215" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <main class="page">
+    <section class="shell">
+      <h1>Summary Statistics</h1>
+      <p class="lead">
+        Explore coarse-grained parameters across experiments. Choose variables for each axis and inspect points by organism.
+      </p>
+
+      <div class="actions">
+        <a class="button" href="index.html">Back to datasets</a>
+        <a class="button" href="summary_metrics.html">Definitions</a>
+      </div>
+
+      <div class="summary-controls">
+        <label for="summary-x">X-axis</label>
+        <select id="summary-x"></select>
+        <label for="summary-y">Y-axis</label>
+        <select id="summary-y"></select>
+      </div>
+
+      <div id="summary-legend" class="summary-legend"></div>
+      <p id="summary-status" class="status"></p>
+      <div id="summary-plot" class="summary-plot"></div>
+      <div id="summary-tooltip" class="summary-tooltip" hidden></div>
+    </section>
+  </main>
+
+  <script src="scripts/summary.js?v=20260215"></script>
+</body>
+</html>

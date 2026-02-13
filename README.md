@@ -2,9 +2,22 @@
 
 This repository contains a collections of public datasets with single-cell size measurements from different organism with different measurement techniques. 
 
-**[Interactive Data Visualization](https://elevien.github.io/single-cell-size-data/)**
+## Local development (live reload)
 
-**This is a work in progress**. We welcome contributions including datasets, improvements to the organization and/or visualization analysis tools. Please feel free to put in a pull request or open an issue if you are interested in helping. 
+Use BrowserSync for automatic reload when editing HTML/CSS/JS/metadata/data files.
+
+```bash
+npm install
+npm run dev
+```
+
+Then open `http://localhost:3000/`.
+
+If you want a plain static server without live reload:
+
+```bash
+npm run serve
+```
 
 ## Universal format for size data
 
@@ -33,8 +46,19 @@ where $y = \log(\text{size} / \langle\text{size}\rangle)$ with the average being
 |---------|----------|--------|------------|-----------|
 | WRB2010.csv | Bacteria (E. coli) | Mother machine | Length (μm) | [1] |
 | TPP2017.csv | Bacteria (E. coli) | Mother machine | Length (μm) | [2] |
-| L1210smr.csv | Mammalian cells (L1210) | Suspended microchannel resonator | Mass (pg) | [3] |
+| L1210smr_longtraces.csv | Mammalian cells (L1210) | Suspended microchannel resonator | Mass (pg) | [3] |
 |  | |  |  |  |
+
+## Dataset metadata
+
+Dataset-level metadata is stored in `metadata/datasets.json`.
+
+Each entry includes:
+- Dataset identifier and display name
+- Organism and measurement method
+- Units and file locations (raw + coarse-grained/summary where available)
+- Paper reference metadata (title, journal, year, DOI, URL)
+- Notes for dataset-specific context
 
 ## Data References
 
